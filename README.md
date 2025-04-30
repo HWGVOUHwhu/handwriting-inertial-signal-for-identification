@@ -78,7 +78,7 @@ handwriting-inertial-signal-for-identification/
 
 1. 克隆仓库：
    ```bash
-   git clone https://github.com/yourusername/handwriting-inertial-signal-for-identification.git
+   git clone https://github.com/HWGVOUHwhu/handwriting-inertial-signal-for-identification.git
    cd handwriting-inertial-signal-for-identification
    ```
 
