@@ -107,11 +107,11 @@ def train_3ch_VAE(model_path, data_folder):
 
 if __name__ == '__main__':
     model_path = 'models/gray_VAE.pth'
-    data_folder = 'Grayscale_images_mixed'
+    data_folder = 'gray_images'
     print('training gray VAE...')
     train_gray_VAE(model_path, data_folder)
 
     model_path = 'models/3ch_VAE.pth'
-    data_folder = 'Trajectory_Projection_Diagram'
+    data_folder = '3ch_images'
     print('training 3ch VAE...')
     train_3ch_VAE(model_path, data_folder)
