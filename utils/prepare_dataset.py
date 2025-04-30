@@ -24,16 +24,14 @@ os.makedirs(gray_image_folder, exist_ok=True)
 tch_image_folder = '3ch_images'
 os.makedirs(tch_image_folder, exist_ok=True)
 
-gray_model_path = r'D:\progrems\My_work_last\models\gray_VAE.pth'
+# 初始化模型但不立即加载权重
+gray_model_path = r'models/gray_VAE.pth'
 gray_model = Conv_VAE().to(device)
-gray_model.load_state_dict(torch.load(gray_model_path))
-gray_model.eval()
 
-tch_model_path = r'D:\progrems\My_work_last\models\3ch_VAE.pth'
+tch_model_path = r'models/3ch_VAE.pth'
 tch_model = Conv_VAE(in_ch=3).to(device)
-tch_model.load_state_dict(torch.load(tch_model_path))
-tch_model.eval()
 
+# 创建转换
 tf_color = transforms.Compose([
     lambda x:Image.open(x).convert('RGB'),
     transforms.Resize((256, 256)),
@@ -53,12 +51,28 @@ tf_gray = transforms.Compose([
     transforms.ToTensor()
 ])
 
+# 延迟加载模型的函数
+def load_models():
+    if os.path.exists(gray_model_path):
+        gray_model.load_state_dict(torch.load(gray_model_path))
+        gray_model.eval()
+    else:
+        print(f"警告: {gray_model_path} 不存在。请先训练并保存 gray_VAE 模型。")
+    
+    if os.path.exists(tch_model_path):
+        tch_model.load_state_dict(torch.load(tch_model_path))
+        tch_model.eval()
+    else:
+        print(f"警告: {tch_model_path} 不存在。请先训练并保存 3ch_VAE 模型。")
 
 def prepare(data_path, preprocessed_data_path, statistic_data_path, gray_image_path, tch_image_path):
     process(data_path, preprocessed_data_path)
     get_statistic(preprocessed_data_path, statistic_data_path)
     draw_gray(preprocessed_data_path, gray_image_path)
     draw_3ch(preprocessed_data_path, tch_image_path)
+    
+    # 确保模型已加载
+    load_models()
 
     with torch.no_grad():
         gray_image = tf_gray(gray_image_path)
