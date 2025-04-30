@@ -1,0 +1,6 @@
+3ch_images/*
+f_dataset/*
+gray_images/*
+statistic/*
+*.pth
+*.pyc
