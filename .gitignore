@@ -1,6 +1,8 @@
-3ch_images/*
-f_dataset/*
-gray_images/*
-statistic/*
+3ch_images/
+f_dataset/
+gray_images/
+statistic/
+isid/
+models/
 *.pth
 *.pyc
