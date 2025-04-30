@@ -71,8 +71,7 @@ def train_loop(device, optimizer, scheduler, loss_fn, epochs, train_loader, test
         test_acc.append(test_correct / test_total)
 
         if test_acc[-1] > best_acc:
-            if not os.path.exists(os.path.dirname(model_path)):
-                os.makedirs(os.path.dirname(model_path))
+            os.makedirs(os.path.dirname(model_path), exist_ok=True)
             torch.save(model.state_dict(), model_path)
             best_acc = test_acc[-1]
             print('Saved best model!')

@@ -47,6 +47,7 @@ def train_loop(model, optimizer, scheduler, device, loss_fn, epochs, train_loade
         test_losses.append(test_loss)
 
         if test_loss < best_loss:
+            os.makedirs(os.path.dirname(model_path), exist_ok=True);
             torch.save(model.state_dict(), model_path)
             best_loss = test_loss
             print('Saved best model!')
