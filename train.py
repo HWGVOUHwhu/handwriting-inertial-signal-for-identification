@@ -27,7 +27,7 @@ def train(data_folder, model_path):
 
 
 if __name__ == '__main__':
-    model_path = r'D:\progrems\My_work_last\models\My_model.pth'
+    model_path = r'models/My_model.pth'
 
     data_folder = 'dataset'
 
