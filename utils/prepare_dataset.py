@@ -65,11 +65,12 @@ def load_models():
     else:
         print(f"警告: {tch_model_path} 不存在。请先训练并保存 3ch_VAE 模型。")
 
-def prepare(data_path, preprocessed_data_path, statistic_data_path, gray_image_path, tch_image_path):
-    process(data_path, preprocessed_data_path)
-    get_statistic(preprocessed_data_path, statistic_data_path)
-    draw_gray(preprocessed_data_path, gray_image_path)
-    draw_3ch(preprocessed_data_path, tch_image_path)
+def prepare(data_path, preprocessed_data_path, statistic_data_path, gray_image_path, tch_image_path, _process_=True):
+    if _process_:
+        process(data_path, preprocessed_data_path)
+        get_statistic(preprocessed_data_path, statistic_data_path)
+        draw_gray(preprocessed_data_path, gray_image_path)
+        draw_3ch(preprocessed_data_path, tch_image_path)
     
     # 确保模型已加载
     load_models()
