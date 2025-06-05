@@ -6,23 +6,23 @@
 
 ```
 handwriting-inertial-signal-for-identification/
-├── application.py              # 主应用程序
+├── application.py              # 主应用程序接口
 ├── README.md                   # 项目说明文档
-├── requirements.txt            # 项目依赖
+├── requirements.txt            # 项目依赖环境配置
 ├── train_VAE.py                # 卷积变分自编码器训练脚本
 ├── train.py                    # 身份识别模型训练脚本
 ├── dataset/                    # 原始数据集目录
-│   ├── 0/                      # 用户0的数据
-│   ├── 1/                      # 用户1的数据
+│   ├── 0/                      # 用户0的数据(正例)
+│   ├── 1/                      # 用户1的数据(负例)
 │   └── ...                     # 更多用户数据
 ├── models/                     # 预训练模型
-│   ├── 3ch_VAE.pth            # 三通道VAE模型
-│   ├── gray_VAE.pth           # 灰度VAE模型
+│   ├── 3ch_VAE.pth            # 三通道轨迹投影图-VAE模型
+│   ├── gray_VAE.pth           # 灰度图-VAE模型
 │   └── My_model.pth           # 身份识别模型
 └── utils/                      # 工具函数
     ├── __init__.py
     ├── dataset_utils.py        # 数据集处理工具
-    ├── draw.py                 # 数据可视化工具
+    ├── draw.py                 # 可视化工具
     ├── models.py               # 模型定义
     ├── prepare_dataset.py      # 数据集预处理工具
     ├── preprocess.py           # 信号预处理
@@ -131,7 +131,7 @@ python3 application.py
 
 ## 实验结果
 
-在测试集上，本模型实现了高准确率的身份识别，详细实验结果请参考训练日志。
+在小样本测试集上，本模型实现了高准确率（接近100%）的身份识别，详细实验结果请参考训练日志。
 
 ## 未来改进
 
